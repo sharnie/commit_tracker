@@ -1,22 +1,8 @@
 require 'nokogiri'
 require 'open-uri'
 
-# usernames = [
-#   'brianknight10',
-#   'annekagoss',
-#   'bethannezink',
-#   'DanFerrer',
-#   'antropova',
-#   'himedlooff',
-#   'sharnie',
-#   'CarpeDN',
-#   'aromayne',
-#   'tadasv',
-#   'rvangundy',
-#   'samueldowens'
-# ]
-
 usernames = {
+  "FilmKnurd" => "Andrew",
   "brianknight10" => "Brian",
   "annekagoss" => "Anneka",
   "bethannezink" => "Bethanne",
@@ -33,7 +19,7 @@ usernames.each do |username, real_name|
     color = doc.css("#contributions-calendar [data-date=\"#{Date.today.prev_day}\"]").attr("fill")
     committed = color.to_s == "#eeeeee" ? "No commits" : "Committed"
     puts "#{username} (#{real_name}): #{committed}"
-    # `open https://github.com/#{username}` if committed === "No commits"
+    `open https://github.com/#{username}` if committed === "No commits"
   rescue
     puts "Invalid username: #{username}"
   end
