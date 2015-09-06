@@ -3,14 +3,12 @@ require 'open-uri'
 
 usernames = {
   "FilmKnurd" => "Andrew",
-  "brianknight10" => "Brian",
   "annekagoss" => "Anneka",
   "bethannezink" => "Bethanne",
   "DanFerrer" => "Dan",
   "antropova" => "Masha",
   "himedlooff" => "Mike",
   "sharnie" => "Sharnie",
-  "CarpeDN" => "Dien"
 }
 
 usernames.each do |username, real_name|
@@ -19,7 +17,7 @@ usernames.each do |username, real_name|
     color = doc.css("#contributions-calendar [data-date=\"#{Date.today.prev_day}\"]").attr("fill")
     committed = color.to_s == "#eeeeee" ? "No commits" : "Committed"
     puts "#{username} (#{real_name}): #{committed}"
-    `open https://github.com/#{username}` if committed === "No commits"
+    `open https://github.com/#{username}` if committed == "Committed"
   rescue
     puts "Invalid username: #{username}"
   end
